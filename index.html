@@ -5,42 +5,42 @@
 <title>PBMed | La ricerca in fotobiomodulazione</title>
 <script>if(location.pathname.endsWith('/search-template.html'))location.replace(new URL('ricerca-pbm.html',location.href));</script>
 <style>
-:root{color-scheme:light;--bg:#f6f8f4;--surface:#ffffff;--surface-2:#eef4ee;--ink:#152a2e;--sub:#4d6464;--line:#d8e2db;--line-strong:#adc2b7;--teal:#075d59;--teal-dark:#044442;--teal-soft:#e6f0eb;--amber:#8a4b12;--shadow:0 1px 2px rgba(20,45,45,.05),0 10px 28px rgba(20,45,45,.06);--max:1020px}
+:root{color-scheme:light;--bg:#f7f5f1;--surface:#ffffff;--surface-2:#efedf5;--ink:#201c36;--sub:#54516a;--line:#dedbe5;--line-strong:#aaa4bc;--teal:#493978;--teal-dark:#322453;--teal-soft:#eeeaf7;--amber:#864226;--shadow:0 1px 2px rgba(45,31,69,.05),0 10px 28px rgba(45,31,69,.06);--max:1020px}
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
-body{margin:0;min-height:100vh;background:radial-gradient(1100px 380px at 50% -180px,#eaf3ec 0%,transparent 72%),var(--bg);color:var(--ink);font:16px/1.6 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+body{margin:0;min-height:100vh;background:radial-gradient(1100px 380px at 50% -180px,#e6def4 0%,transparent 72%),var(--bg);color:var(--ink);font:16px/1.6 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
 header,main,footer{width:min(var(--max),92%);margin-inline:auto}
 header{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:14px 0;border-bottom:1px solid var(--line)}
-.mark{width:38px;height:38px;border-radius:11px;background:linear-gradient(145deg,#0a7a72,#044c49);color:#fff;display:grid;place-items:center;font:800 12px/1 system-ui;letter-spacing:.02em;box-shadow:0 4px 10px rgba(4,76,73,.25);flex:none}
+
 header h1{margin:0;font-weight:750;letter-spacing:-.02em}
-header h1,header .tagline{font-size:clamp(15px,2.4vw,18px)}
+header h1{font-size:clamp(32px,5vw,48px);line-height:1.08}header .tagline{font-size:clamp(15px,2.4vw,18px)}
 header .tagline{color:var(--sub);line-height:1.25}
-header .tagline small{display:block;font-size:.85em;color:#566c69}
+header .tagline small{display:block;font-size:.85em;color:#615b71}
 header .version{margin-left:auto;color:var(--sub);font-size:11.5px;border:1px solid var(--line);padding:4px 10px;border-radius:99px;background:var(--surface);white-space:nowrap}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
-.panel{margin:22px 0 0;background:linear-gradient(180deg,#f3f9f4,#e9f2ec);border:1px solid #d3e4da;border-radius:18px;padding:clamp(16px,3vw,26px);box-shadow:var(--shadow)}
+.panel{margin:22px 0 0;background:linear-gradient(180deg,#f4f0fa,#e9e3f3);border:1px solid #d8cfe9;border-radius:18px;padding:clamp(16px,3vw,26px);box-shadow:var(--shadow)}
 .ask{margin:0 0 12px;font:400 clamp(18px,2.6vw,23px)/1.3 Georgia,serif;letter-spacing:-.01em}
 .searchbox{display:flex;gap:10px;align-items:stretch}
 .field{position:relative;flex:1;min-width:0;display:flex}
-.field svg{position:absolute;left:14px;top:50%;transform:translateY(-50%);width:18px;height:18px;color:#6a827c;pointer-events:none}
+.field svg{position:absolute;left:14px;top:50%;transform:translateY(-50%);width:18px;height:18px;color:#756d89;pointer-events:none}
 input,button,select{font:inherit}
 input[type=search]{min-width:0;flex:1;width:100%;padding:14px 42px 14px 42px;border:1px solid var(--line-strong);border-radius:12px;background:var(--surface);color:var(--ink);appearance:none}
-input[type=search]::placeholder{color:#6a7f7a}
+input[type=search]::placeholder{color:#736a80}
 input[type=search]:focus{outline:none;border-color:var(--teal);box-shadow:0 0 0 4px rgba(7,93,89,.12)}
 input[type=search]::-webkit-search-cancel-button{display:none}
-.clear{position:absolute;right:8px;top:50%;transform:translateY(-50%);width:28px;height:28px;border:0;border-radius:50%;background:#e4ece7;color:var(--sub);font-size:18px;line-height:1;display:grid;place-items:center;padding:0}
-.clear:hover{background:#d5e3dc;color:var(--ink)}
+.clear{position:absolute;right:8px;top:50%;transform:translateY(-50%);width:28px;height:28px;border:0;border-radius:50%;background:#e7e1ef;color:var(--sub);font-size:18px;line-height:1;display:grid;place-items:center;padding:0}
+.clear:hover{background:#d7cfe4;color:var(--ink)}
 button{cursor:pointer;border:1px solid var(--line-strong);background:var(--surface);color:var(--teal);border-radius:9px;padding:8px 13px;transition:background .15s,border-color .15s,color .15s}
 button:hover{background:var(--teal-soft)}
 .primary{background:var(--teal);border-color:var(--teal);color:#fff;font-weight:700;padding:0 22px;border-radius:12px;white-space:nowrap}
 .primary:hover{background:var(--teal-dark);color:#fff}
 .chips{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin-top:12px;font-size:14px}
 .chips>span{color:var(--sub);margin-right:2px}
-.chips button{border-radius:99px;padding:5px 11px;font-size:13.5px;background:rgba(255,255,255,.72);border-color:#bcd3c7}
+.chips button{border-radius:99px;padding:5px 11px;font-size:13.5px;background:rgba(255,255,255,.72);border-color:#c8bfd7}
 .chips button:hover{background:#fff}
 .chips button[aria-pressed=true],.chips button.primary{background:var(--teal);border-color:var(--teal);color:#fff}
 .chips button[aria-pressed=true]:hover{background:var(--teal-dark)}
-.filterbar{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;margin:18px 0 4px;padding:12px 14px;background:var(--surface);border:1px solid var(--line);border-radius:14px;box-shadow:0 1px 2px rgba(20,45,45,.04)}
+.filterbar{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;margin:18px 0 4px;padding:12px 14px;background:var(--surface);border:1px solid var(--line);border-radius:14px;box-shadow:0 1px 2px rgba(45,31,69,.04)}
 .filtergrp{display:flex;align-items:center;gap:8px;min-width:0}
 .filtergrp label{font-size:11px;font-weight:750;text-transform:uppercase;letter-spacing:.07em;color:var(--sub);white-space:nowrap}
 select{max-width:100%;border:1px solid var(--line-strong);background:var(--surface);color:var(--ink);padding:7px 10px;border-radius:9px;cursor:pointer}
@@ -56,36 +56,36 @@ select:focus{outline:none;border-color:var(--teal);box-shadow:0 0 0 3px rgba(7,9
 #suggest p{color:var(--sub);font-size:14px;margin:0 0 6px}
 .activebar{display:flex;flex-wrap:wrap;align-items:center;gap:7px;margin:10px 0 2px;font-size:13px}
 .activebar .alabel{text-transform:uppercase;letter-spacing:.07em;font-size:11px;font-weight:750;color:var(--sub)}
-.activechip{background:var(--teal-soft);border:1px solid #c8ded2;color:#0b4a46;padding:3px 9px;border-radius:99px}
+.activechip{background:var(--teal-soft);border:1px solid #d6cce6;color:#443260;padding:3px 9px;border-radius:99px}
 .activebar button{margin-left:auto;font-size:13px;padding:4px 12px;border-radius:99px}
-.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-bottom:10px;box-shadow:0 1px 2px rgba(20,45,45,.04);transition:border-color .15s,box-shadow .15s}
-.card:hover{border-color:#b9cfc4;box-shadow:0 7px 20px rgba(20,45,45,.07)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-bottom:10px;box-shadow:0 1px 2px rgba(45,31,69,.04);transition:border-color .15s,box-shadow .15s}
+.card:hover{border-color:#b9abce;box-shadow:0 7px 20px rgba(45,31,69,.07)}
 .card .meta{color:var(--sub);font-size:12.5px}
 .card h3{margin:6px 0 8px;font:600 17.5px/1.4 Georgia,serif;overflow-wrap:anywhere}
-mark{background:#fdf0c8;color:inherit;padding:0 2px;border-radius:3px}
+mark{background:#ffe1b6;color:inherit;padding:0 2px;border-radius:3px}
 .tags{display:flex;flex-wrap:wrap;gap:5px;margin:0 0 2px}
-.tag{font-size:11.5px;letter-spacing:.02em;color:#3d5a54;background:#eef3ef;border:1px solid #dbe6df;border-radius:99px;padding:2px 8px}
-.tag-accent{color:var(--teal);background:var(--teal-soft);border-color:#c8ded2}
-.note{font-size:13.5px;color:var(--amber);background:#fdf3e7;border:1px solid #f0dcc3;border-radius:9px;padding:7px 10px;margin:8px 0 0}
+.tag{font-size:11.5px;letter-spacing:.02em;color:#574a68;background:#f4f0f7;border:1px solid #e1dbe9;border-radius:99px;padding:2px 8px}
+.tag-accent{color:var(--teal);background:var(--teal-soft);border-color:#d6cce6}
+.note{font-size:13.5px;color:var(--amber);background:#fff2e8;border:1px solid #edd1bd;border-radius:9px;padding:7px 10px;margin:8px 0 0}
 details{margin-top:10px;border-top:1px dashed var(--line);padding-top:8px}
 summary{cursor:pointer;color:var(--teal);font-weight:650;font-size:14px;list-style:none;display:flex;align-items:center;gap:7px}
 summary::-webkit-details-marker{display:none}
 summary::before{content:"";width:0;height:0;border-left:5px solid currentColor;border-top:4px solid transparent;border-bottom:4px solid transparent;transition:transform .15s}
 details[open]>summary::before{transform:rotate(90deg)}
-summary:focus-visible{outline:3px solid #b35c18;outline-offset:3px;border-radius:4px}
-details p{max-width:80ch;color:#2c4345;font-size:14.5px}
+summary:focus-visible{outline:3px solid #99502f;outline-offset:3px;border-radius:4px}
+details p{max-width:80ch;color:#373249;font-size:14.5px}
 dl{display:grid;grid-template-columns:minmax(120px,180px) 1fr;gap:6px 14px;margin:8px 0 0;font-size:14px}
 dt{font-weight:700;color:var(--sub);font-size:13px}
 dd{margin:0}
 .actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
-.actions a{display:inline-flex;align-items:center;gap:4px;font-size:13px;font-weight:650;color:var(--teal);background:var(--teal-soft);border:1px solid #cfe2d8;border-radius:99px;padding:5px 11px;text-decoration:none}
-.actions a:hover{background:#dcebe3}
+.actions a{display:inline-flex;align-items:center;gap:4px;font-size:13px;font-weight:650;color:var(--teal);background:var(--teal-soft);border:1px solid #d9cee8;border-radius:99px;padding:5px 11px;text-decoration:none}
+.actions a:hover{background:#dfd5ee}
 .empty{padding:26px 20px;border:1px dashed var(--line-strong);border-radius:14px;background:var(--surface);text-align:center;color:var(--sub)}
 .empty strong{display:block;color:var(--ink);font:600 18px Georgia,serif;margin-bottom:4px}
 #more{display:block;width:100%;margin:6px 0 0;padding:12px;border-style:dashed;font-weight:650;border-radius:12px}
 footer{border-top:1px solid var(--line);margin-top:28px;padding:18px 0 32px;color:var(--sub);font-size:12.5px}
 a{color:var(--teal)}
-:focus-visible{outline:3px solid #b35c18;outline-offset:3px}
+:focus-visible{outline:3px solid #99502f;outline-offset:3px}
 [hidden]{display:none!important}
 @media(max-width:640px){
  header{padding:12px 0;gap:8px 10px}
@@ -108,9 +108,9 @@ a{color:var(--teal)}
  .card{padding:18px 22px}
 }
 </style>
-<header><div class="mark">PBM</div><h1>PBMed</h1><span class="tagline">La ricerca in fotobiomodulazione<small>a cura del dott. Michele Acanfora</small></span><small class="version">Ricerca locale · offline</small></header>
+<header><h1>PBMed</h1><span class="tagline">La ricerca in fotobiomodulazione<small>a cura del dott. Michele Acanfora</small></span><small class="version">Ricerca locale · offline</small></header>
 <main>
-<section class="panel" aria-label="Ricerca"><h2 class="ask">Quale patologia ti interessa?</h2><form id="form" role="search"><label class="sr-only" for="q">Cerca patologia, titolo o abstract</label><div class="searchbox"><div class="field"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.5-3.5"></path></svg><input type="search" id="q" placeholder="Es. mucosite orale" autocomplete="off"><button type="button" id="clear" class="clear" aria-label="Cancella la ricerca" hidden>×</button></div><button class="primary">Cerca</button></div></form><div id="chips" class="chips"><span>Prova con:</span></div></section>
+<section class="panel" aria-label="Ricerca"><h2 class="ask">Quale patologia ti interessa? (in italiano o in inglese)</h2><form id="form" role="search"><label class="sr-only" for="q">Cerca patologia, titolo o abstract</label><div class="searchbox"><div class="field"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.5-3.5"></path></svg><input type="search" id="q" placeholder="Es. mucosite orale" autocomplete="off"><button type="button" id="clear" class="clear" aria-label="Cancella la ricerca" hidden>×</button></div><button class="primary">Cerca</button></div></form><div id="chips" class="chips"><span>Prova con:</span></div></section>
 <div class="filterbar" role="group" aria-label="Filtri"><div class="filtergrp"><label for="field">Cerca in</label><select id="field"><option value="">Patologia, titolo o abstract</option></select></div><div class="filtergrp"><label for="period">Anno di pubblicazione</label><select id="period"><option value="">Tutti gli anni</option><option value="5">Ultimi 5 anni</option><option value="10">Ultimi 10 anni</option></select></div><div class="filtergrp" id="valuesRow" hidden><label for="values">Valori presenti</label><select id="values"></select></div><div class="filtergrp"><label for="sort">Ordina</label><select id="sort"><option value="rel">Rilevanza</option><option value="new">Più recenti</option><option value="old">Più vecchi</option></select></div></div>
 <section id="areaBox" class="areas" aria-labelledby="areaTitle"><h2 id="areaTitle">Filtra per area</h2><div id="areas" class="chips"></div></section>
 <div class="tools"><p id="heading" aria-live="polite"></p></div>
@@ -154,7 +154,7 @@ const stop=new Set('hai avete qualcosa cosa ci sono studi studio articoli artico
 const entries=lex.flatMap(v=>v.map(alias=>({w:norm(alias).split(' '),alts:v.map(x=>wrap(norm(x)))}))).sort((a,b)=>b.w.length-a.w.length);
 function concepts(q){const ws=q.split(' '),out=[];for(let i=0;i<ws.length;){const e=entries.find(e=>e.w.every((w,j)=>ws[i+j]===w));
  if(e){out.push(e.alts);i+=e.w.length}else{if(ws[i]&&!stop.has(ws[i]))out.push([wrap(ws[i])]);i++}}return out}
-const fields=['Area Clinica','Fenomeno','Tessuto','Design','Punti EBM','Sintesi (AI)'];
+const fields=['Fenomeno','Tessuto','Design','Punti EBM','Sintesi (AI)'];
 for(const f of fields.filter(f=>f!=='Area Clinica'))$('field').add(new Option(f,f));
 function classifyPBM(article, areas) {
   const old = article.sheet?.['Area Clinica'] || '';
@@ -230,7 +230,7 @@ function draw(){
  for(const {d,reason} of hits.slice(shown,shown+20)){const a=d.a,c=elem('article',null,'card');
   c.append(elem('div',[a.date||'Data non disponibile',a.journal].filter(Boolean).join(' · '),'meta'));
   const h=elem('h3');h.append(markUp(a.title||'Titolo non disponibile',words));c.append(h);
-  const tags=elem('div',null,'tags');if(d.clinical?.area)tags.append(elem('span',d.clinical.area,'tag'));if(a.sheet)tags.append(elem('span','Scheda PBM','tag tag-accent'));
+  const tags=elem('div',null,'tags');if(a.sheet)tags.append(elem('span','Scheda PBM','tag tag-accent'));
   if(tags.childNodes.length)c.append(tags);
   if(a.copies){const det=elem('details');det.append(elem('summary',a.copies.length+' schede Zotero per questo articolo'));for(const k of a.copies){det.append(link(k,'https://www.zotero.org/groups/'+db.group+'/items/'+k),document.createTextNode(' '))}c.append(det)}
   if(a.scopeNote)c.append(elem('div','Pertinenza: '+a.scopeNote,'note'));
@@ -276,10 +276,10 @@ function run(raw){const input=norm(raw),q=input.replace(/^(?:hai qualcosa (?:su|
  $('status').textContent=!hits.length?'Nessun risultato in questo catalogo. Prova il solo nome della patologia, un termine inglese o uno degli esempi.':topic?'Ricerca estesa ai termini equivalenti: '+topic[1].join(', ')+'. Prima le menzioni nel titolo.':q?'Ricerca letterale nel catalogo. Prima le corrispondenze nel titolo.':'Dal più recente. Apri un abstract o consulta la scheda originale.';
  if(field)$('status').textContent=docs.some(d=>d.a.sheet?.[field])?'Ricerca nel campo «'+field+'».':'Nessun dato disponibile per questo campo.';
  if(span)$('status').textContent+=' Periodo: '+first+'–'+year+' inclusi; esclusi i record senza anno.';
- if(!field&&q&&hits.length&&!topic)$('status').textContent='Corrispondenze nella scheda, anche tramite il lessico italiano-inglese. Tutti i termini significativi sono richiesti.';
+ if(!field&&q&&hits.length&&!topic)$('status').textContent='';
  if(area)$('status').textContent+=' Area clinica: '+area+'.';
  toggleClear();renderActive();if(!hits.length)emptyState();draw()}
-for(const [name] of presets){const b=elem('button',name);b.type='button';b.onclick=()=>{$('q').value=name;$('field').value='';setupFields();toggleClear();run(name)};$('chips').append(b)}
+for(const [name] of presets){const b=elem('button',name);b.type='button';b.onclick=()=>{area='';areas();$('q').value=name;$('field').value='';setupFields();toggleClear();run(name)};$('chips').append(b)}
 $('form').onsubmit=e=>{e.preventDefault();run($('q').value)};$('more').onclick=draw;
 $('period').onchange=()=>run($('q').value);
 $('field').onchange=()=>{setupFields();$('q').placeholder=$('field').value?'Cerca nel campo selezionato':'Es. mucosite orale';run($('q').value)};
