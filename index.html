@@ -128,7 +128,7 @@ footer p+p{margin-top:.65em}
 <header><h1>PBMed</h1><span class="tagline">La ricerca in fotobiomodulazione<small>a cura del dott. Michele Acanfora</small></span><small class="version">Ricerca locale · offline</small></header>
 <main>
 <section class="panel" aria-label="Ricerca"><h2 class="ask">Quale patologia ti interessa? (in italiano o in inglese)</h2><form id="form" role="search"><label class="sr-only" for="q">Cerca patologia, titolo o abstract</label><div class="searchbox"><div class="field"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.5-3.5"></path></svg><input type="search" id="q" placeholder="Es. mucosite orale" autocomplete="off"><button type="button" id="clear" class="clear" aria-label="Cancella la ricerca" hidden>×</button></div><button class="primary">Cerca</button></div></form><div id="chips" class="chips"><span>Prova con:</span></div></section>
-<div class="filterbar" role="group" aria-label="Filtri"><div class="filtergrp"><label for="field">Cerca in</label><select id="field"><option value="">Patologia, titolo o abstract</option></select></div><div class="filtergrp"><label for="period">Anno di pubblicazione</label><select id="period"><option value="">Tutti gli anni</option><option value="5">Ultimi 5 anni</option><option value="10">Ultimi 10 anni</option></select></div><div class="filtergrp" id="valuesRow" hidden><label for="values">Valori presenti</label><select id="values"></select></div><div class="filtergrp"><label for="sort">Ordina</label><select id="sort"><option value="new" selected>Più recenti</option><option value="rel">Rilevanza</option><option value="old">Più vecchi</option></select></div></div>
+<div class="filterbar" role="group" aria-label="Filtri"><div class="filtergrp"><label for="period">Anno di pubblicazione</label><select id="period"><option value="">Tutti gli anni</option><option value="5">Ultimi 5 anni</option><option value="10">Ultimi 10 anni</option></select></div><div class="filtergrp"><label for="sort">Ordina</label><select id="sort"><option value="new" selected>Più recenti</option><option value="rel">Rilevanza</option><option value="old">Più vecchi</option></select></div></div>
 <section id="areaBox" class="areas" aria-labelledby="areaTitle"><h2 id="areaTitle">Filtra per area</h2><div id="areas" class="chips"></div></section>
 <div class="tools"><p id="heading" aria-live="polite"></p></div>
 <p class="info" id="status" role="status"></p><div id="suggest"></div><div id="activeFilters" class="activebar" hidden></div><section aria-labelledby="heading" id="cards"></section><button id="more" hidden>Mostra altri 20</button>
@@ -175,7 +175,6 @@ const entries=lex.flatMap(v=>v.map(alias=>({w:norm(alias).split(' '),alts:v.map(
 function concepts(q){const ws=q.split(' '),out=[];for(let i=0;i<ws.length;){const e=entries.find(e=>e.w.every((w,j)=>ws[i+j]===w));
  if(e){out.push(e.alts);i+=e.w.length}else{if(ws[i]&&!stop.has(ws[i]))out.push([wrap(ws[i])]);i++}}return out}
 const fields=['Fenomeno','Tessuto','Design','Punti EBM','Sintesi (AI)'];
-for(const f of fields.filter(f=>f!=='Area Clinica'))$('field').add(new Option(f,f));
 function classifyPBM(article, areas) {
   const old = article.sheet?.['Area Clinica'] || '';
   const title = (article.title || '').toLowerCase();
@@ -221,10 +220,7 @@ function classifyDocs(){for(const d of docs)d.clinical=classifyPBM(d.a,db.areas)
 classifyDocs();
 let area='';function areas(){const box=$('areas');box.replaceChildren();
  for(const v of ['',...db.areas]){const b=elem('button',v||'Tutte le aree');b.type='button';b.setAttribute('aria-pressed',String(area===v));if(area===v)b.className='primary';
- b.onclick=()=>{area=v;if(!v){$('field').value='';$('period').value='';$('q').value='';$('q').placeholder='Es. mucosite orale';setupFields()}areas();run($('q').value)};box.append(b)}}
-function setupFields(){const f=$('field').value,vals=[...new Set(docs.map(d=>d.a.sheet?.[f]).filter(Boolean))].sort((a,b)=>a.localeCompare(b,'it'));
- $('values').replaceChildren(new Option('Tutti i valori',''));if(f!=='Sintesi (AI)')for(const v of vals)$('values').add(new Option(v,v));
- $('valuesRow').hidden=!f||!vals.length||f==='Sintesi (AI)';}
+ b.onclick=()=>{area=v;if(!v){$('period').value='';$('q').value='';$('q').placeholder='Es. mucosite orale';}areas();run($('q').value)};box.append(b)}}
 const link=(s,url)=>{const e=elem('a',s);e.href=url;e.target='_blank';e.rel='noopener noreferrer';return e};
 const rxEsc=s=>s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
 function markUp(text,words){const frag=document.createDocumentFragment();if(!words.length){frag.append(document.createTextNode(text));return frag}
@@ -262,55 +258,49 @@ function draw(){
 }
 function renderActive(){const box=$('activeFilters');box.replaceChildren();const parts=[];
  if(area)parts.push(['Area',area]);
- const f=$('field').value;if(f)parts.push([f,$('values').value||'tutti i valori']);
  const p=$('period').value;if(p)parts.push(['Periodo','ultimi '+p+' anni']);
  if(!parts.length){box.hidden=true;return}
  box.hidden=false;box.append(elem('span','Filtri attivi','alabel'));
  for(const [k,v] of parts)box.append(elem('span',k+': '+v,'activechip'));
- const r=elem('button','Azzera filtri');r.type='button';r.onclick=()=>{area='';$('field').value='';$('period').value='';$('values').value='';setupFields();areas();run($('q').value)};box.append(r)}
+ const r=elem('button','Azzera filtri');r.type='button';r.onclick=()=>{area='';$('period').value='';areas();run($('q').value)};box.append(r)}
 function emptyState(){const e=elem('div',null,'empty');e.append(elem('strong','Nessun risultato'),document.createTextNode('Prova con il nome della patologia in italiano o in inglese, oppure parti da un esempio.'));
  const g=elem('div',null,'chips');g.style.justifyContent='center';
- for(const name of ['Mucosite orale','Fibromialgia','Covid/Post-Covid']){const b=elem('button',name);b.type='button';b.onclick=()=>{area='';$('field').value='';$('period').value='';$('values').value='';setupFields();areas();$('q').value=name;toggleClear();run(name)};g.append(b)}
+ for(const name of ['Mucosite orale','Fibromialgia','Covid/Post-Covid']){const b=elem('button',name);b.type='button';b.onclick=()=>{area='';$('period').value='';areas();$('q').value=name;toggleClear();run(name)};g.append(b)}
  e.append(g);$('cards').append(e)}
 function run(raw){const input=norm(raw),q=input.replace(/^(?:hai qualcosa (?:su|sul|sulla|sull)|ci sono studi (?:su|sul|sulla|sull)|cerco (?:studi (?:su|sul|sulla|sull)|articoli (?:su|sul|sulla|sull)))\s+/,'').replace(/^(?:la|il|l)\s+/,'')||input,topic=topics.find(([,v])=>v.some(x=>norm(x)===q));hits=[];
  const year=new Date().getFullYear(),span=Number($('period').value),first=year-span+1;
  const hints=$('suggest');hints.replaceChildren();
- const field=$('field').value,choice=$('values').value;
  const preset=presets.find(v=>norm(v[0])===q);
  const parts=preset?[preset.filter(x=>x!=='ATM').map(x=>wrap(norm(x)))]:concepts(input);
- if(q&&!topic&&!preset&&!field){const words=q.split(' ').filter(w=>w.length>=4);
+ if(q&&!topic&&!preset){const words=q.split(' ').filter(w=>w.length>=4);
   const suggested=topics.filter(([,v])=>v.some(alias=>wrap(q).includes(wrap(norm(alias)))||words.some(w=>norm(alias).split(' ').includes(w))));
   if(suggested.length){hints.append(elem('p','Vuoi esplorare uno di questi temi? Il pulsante cerca il tema senza gli altri termini della domanda.'));
    const group=elem('div',null,'chips');for(const [,aliases] of suggested){const b=elem('button',aliases[0]);b.type='button';b.onclick=()=>{$('q').value=aliases[0];toggleClear();run(aliases[0])};group.append(b)}hints.append(group)}}
  for(const d of docs){const a=d.a;let rank=0,reason='';
  if(area&&d.clinical.area!==area)continue;
  if(span&&(!d.y||Number(d.y)<first||Number(d.y)>year))continue;
- if(field){const v=a.sheet?.[field];if(v&&(!choice||choice===v)&&(!input||norm(v).includes(input)||(parts.length&&parts.every(g=>g.some(x=>wrap(norm(v)).includes(x)))))){rank=2;reason='Foglio PBM · '+field}}
- else if(!q){rank=1}else if(preset){rank=parts[0].some(x=>d.t.includes(x))?3:parts[0].some(x=>d.b.includes(x))?2:0}else if(topic){const m=a.topicMentions[topic[0]];if(m){rank=m==='title'?3:2;reason=m==='title'?'Tema nel titolo':'Tema nell’abstract'}}
+ if(!q){rank=1}else if(preset){rank=parts[0].some(x=>d.t.includes(x))?3:parts[0].some(x=>d.b.includes(x))?2:0}else if(topic){const m=a.topicMentions[topic[0]];if(m){rank=m==='title'?3:2;reason=m==='title'?'Tema nel titolo':'Tema nell’abstract'}}
  else if(raw.trim().toLowerCase()===a.doi.toLowerCase()||raw.trim()===a.pmid){rank=4;reason='Identificativo esatto'}
  else if(d.t.includes(wrap(q))||d.b.includes(wrap(q))){const title=d.t.includes(wrap(q));rank=title?3:2;reason=title?'Testo nel titolo':'Testo nell’abstract'}
- if(!rank&&!field&&parts.length){const s=wrap(norm(Object.values(a.sheet||{}).join(' ')));if(parts.every(group=>group.some(x=>d.t.includes(x)||d.b.includes(x)||s.includes(x)))){rank=parts.every(g=>g.some(x=>d.t.includes(x)))?3:1;reason='Termini della domanda in titolo, abstract o classificazione'}}
+ if(!rank&&parts.length){const s=wrap(norm(Object.values(a.sheet||{}).join(' ')));if(parts.every(group=>group.some(x=>d.t.includes(x)||d.b.includes(x)||s.includes(x)))){rank=parts.every(g=>g.some(x=>d.t.includes(x)))?3:1;reason='Termini della domanda in titolo, abstract o classificazione'}}
  if(rank)hits.push({d,rank,reason})}
  sortHits();shown=0;$('cards').replaceChildren();
  setHeading(hits.length);
  $('status').textContent=!hits.length?'Nessun risultato in questo catalogo. Prova il solo nome della patologia, un termine inglese o uno degli esempi.':topic?'Ricerca estesa ai termini equivalenti: '+topic[1].join(', ')+'.':'';
- if(field)$('status').textContent=docs.some(d=>d.a.sheet?.[field])?'Ricerca nel campo «'+field+'».':'Nessun dato disponibile per questo campo.';
  if(span)$('status').textContent+=' Periodo: '+first+'–'+year+' inclusi; esclusi i record senza anno.';
- if(!field&&q&&hits.length&&!topic)$('status').textContent='';
+ if(q&&hits.length&&!topic)$('status').textContent='';
  if(area)$('status').textContent+=' Area clinica: '+area+'.';
  toggleClear();renderActive();if(!hits.length)emptyState();draw()}
-for(const [name] of presets){const b=elem('button',name);b.type='button';b.onclick=()=>{area='';areas();$('q').value=name;$('field').value='';setupFields();toggleClear();run(name)};$('chips').append(b)}
+for(const [name] of presets){const b=elem('button',name);b.type='button';b.onclick=()=>{area='';areas();$('q').value=name;toggleClear();run(name)};$('chips').append(b)}
 $('form').onsubmit=e=>{e.preventDefault();run($('q').value)};$('more').onclick=draw;
 $('period').onchange=()=>run($('q').value);
-$('field').onchange=()=>{setupFields();$('q').placeholder=$('field').value?'Cerca nel campo selezionato':'Es. mucosite orale';run($('q').value)};
-$('values').onchange=()=>run($('q').value);
 $('sort').onchange=()=>{sortHits();shown=0;$('cards').replaceChildren();if(!hits.length){emptyState()}else{draw()}};
 $('clear').onclick=()=>{$('q').value='';toggleClear();run('');$('q').focus()};
 $('q').oninput=toggleClear;
 document.addEventListener('keydown',e=>{
  if(e.key==='/'&&!/^(INPUT|SELECT|TEXTAREA)$/.test(document.activeElement.tagName)){e.preventDefault();$('q').focus()}
  else if(e.key==='Escape'&&document.activeElement===$('q')&&$('q').value){$('q').value='';toggleClear();run('')}});
-setupFields();areas();
+areas();
 run('');
 }
 </script>

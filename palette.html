@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="it">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow,noarchive,nosnippet">
+<title>PBMed | Cinque prove colore</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f0efed;color:#242324;font:16px/1.45 system-ui,sans-serif}
+main{max-width:840px;margin:auto;padding:clamp(14px,4vw,32px)}h1{font:600 clamp(26px,5vw,40px)/1.1 Georgia,serif;margin:.25em 0}
+.eyebrow,small{font-size:12px;letter-spacing:.09em}.eyebrow{text-transform:uppercase;font-weight:700}nav{display:flex;flex-wrap:wrap;gap:6px;margin:14px 0}
+nav a{padding:8px 12px;border:1px solid #777;border-radius:24px;background:white;color:#333;text-decoration:none}nav a[aria-current=true]{background:#252329;color:white}
+nav a:focus-visible{outline:3px solid #385ad5;outline-offset:2px}
+#sample{border:1px solid #969398;border-radius:16px;background:var(--bg);color:var(--ink);padding:clamp(16px,4vw,32px)}
+.mast{border-bottom:1px solid var(--line);padding-bottom:12px}.mast b{font-size:36px;letter-spacing:-.05em}.mast span{display:block;color:var(--sub)}
+.panel,article{border:1px solid var(--line);border-radius:12px;padding:16px;margin:16px 0;background:var(--panel)}
+h2,h3{font-family:Georgia,serif;margin:0 0 12px}h2{font-weight:400;font-size:21px}.row{display:flex;gap:8px;flex-wrap:wrap}.input,.chip,.go{border:1px solid var(--line);background:var(--card);padding:7px 12px;border-radius:8px}.input{flex:1;color:var(--ink)}.go,.selected{background:var(--accent);border-color:var(--accent);color:var(--on);font-weight:700}
+.chip{border-radius:18px;font-size:13px}.tags{margin-top:12px}.label,article small{color:var(--sub)}article{background:var(--card);margin-bottom:0}article h3{font-size:19px;margin:7px 0}article b{color:var(--link)}#description{min-height:1.5em}
+</style>
+<main><div class="eyebrow">PBMed / Studio del colore</div><h1>Cinque palette</h1>
+<p>Scegli un colore per confrontare la stessa schermata. Questa è un’anteprima grafica, non il catalogo.</p>
+<nav aria-label="Scegli una palette"></nav><p id="description" aria-live="polite"></p>
+<section id="sample" aria-label="Esempio di interfaccia PBMed">
+<div class="mast"><b>PBMed</b><span>La ricerca in fotobiomodulazione</span></div>
+<section class="panel"><h2>Quale patologia ti interessa?</h2><div class="row"><span class="input">Fibromialgia</span><span class="go">Cerca</span></div>
+<div class="row tags"><span class="chip selected">Fibromialgia</span><span class="chip">Mucosite orale</span><span class="chip">Artrosi</span></div></section>
+<div class="label">Filtra per area</div><div class="row"><span class="chip selected">Tutte le aree</span><span class="chip">Reumatologia</span></div>
+<article><small>SCHEDA DIMOSTRATIVA</small><h3>Fotobiomodulazione nella fibromialgia</h3><p class="label">Esempio di testo secondario nella scheda di un articolo.</p><b>▸ Abstract</b></article>
+</section></main>
+<script>
+const themes=[
+ ['rosso-nero','01 · Rosso e nero','Nero carbone, rosso corallo sui comandi e bianco caldo per i titoli.','#151414','#241c1e','#201f20','#fcf5f2','#d7c8c6','#776567','#ff625f','#201215','#ff9791'],
+ ['atlante','02 · Atlante','Blu oltremare e carta chiara: una veste editoriale sobria.','#f2f3f5','#e6edf8','#ffffff','#172338','#40546c','#8b9ab0','#223f83','#ffffff','#214180'],
+ ['salvia','03 · Salvia','Verde bosco su salvia, con superfici chiare e poco sature.','#f2f5ef','#e3ecdc','#fbfcf8','#1d3023','#415746','#91a58e','#28593c','#ffffff','#255739'],
+ ['terracotta','04 · Terracotta','Sabbia e ruggine: il contrasto caldo di una rivista su carta.','#faf3e8','#f1e2cf','#fffbf3','#342820','#655042','#ac9381','#8d4028','#ffffff','#803923'],
+ ['abisso','05 · Abisso','Blu notte e acquamarina: un tema scuro più freddo del rosso e nero.','#101d2a','#182e3d','#1b2938','#edf8fa','#bed0db','#597587','#69dac8','#10262a','#80e2d2']
+];
+const nav=document.querySelector('nav'),sample=document.querySelector('#sample');
+for(const [id,name] of themes){const a=document.createElement('a');a.href='#'+id;a.textContent=name;nav.append(a)}
+function select(){const [id,,description,...colors]=themes.find(t=>t[0]===location.hash.slice(1))||themes[0];
+ ['bg','panel','card','ink','sub','line','accent','on','link'].forEach((k,i)=>sample.style.setProperty('--'+k,colors[i]));
+ for(const a of nav.children)a.setAttribute('aria-current',String(a.hash==='#'+id));
+ document.querySelector('#description').textContent=description}
+addEventListener('hashchange',select);select();
+</script></html>
